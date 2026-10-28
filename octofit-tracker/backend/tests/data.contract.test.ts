@@ -125,4 +125,3 @@ describe('OctoFit data contract', () => {
     }
   }, 60_000);
 });
-
