@@ -1,15 +1,18 @@
+import { getJson } from '../api/client.js';
 import { CapabilityCard } from './CapabilityCard.js';
 
 type TeamResponse = {
   teams: Array<{ name: string; mascot?: string; members: Array<string | { name?: string }> }>;
 };
 
+const loadTeams = () => getJson<TeamResponse>('/api/teams');
+
 export default function Teams() {
   return (
     <CapabilityCard<TeamResponse>
       title="Teams"
       description="Manage teams and members."
-      endpoint="/api/teams"
+      load={loadTeams}
       emptyMessage="No teams yet."
       isEmpty={({ teams }) => teams.length === 0}
     >
